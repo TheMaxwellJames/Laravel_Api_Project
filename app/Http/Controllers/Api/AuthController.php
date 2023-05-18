@@ -99,4 +99,23 @@ class AuthController extends Controller
             ],400); 
         }
     }
+
+
+
+    public function user(Request $request)
+    {
+        return response()->json([
+            'message'=> 'User Successfully Fetched',
+            'data'=>$request->user()
+        ],200); 
+    }
+
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'message'=> 'User Logged Out',
+        ],200); 
+    }
 }
